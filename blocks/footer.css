@@ -1,0 +1,19 @@
+.footer {
+  background-color: #faf4e6;
+  padding: 20px 0 28px;
+  margin-top: 32px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer p {
+  max-width: 1340px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(33, 33, 33, 0.2);
+  text-align: center;
+  font: 400 16px/1 "Poppins", Arial, sans-serif;
+  color: rgba(33, 33, 33, 0.7);
+}
