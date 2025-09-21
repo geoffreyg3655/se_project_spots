@@ -54,7 +54,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 0;
   height: auto;
   border: none;
   border-radius: 8px;
@@ -90,7 +90,7 @@
   border: none;
   border-radius: 8px;
   background-color: #212121;
-  color: #ffffff;
+  color: #fcf5e5;
   font-family: "Poppins", Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -123,21 +123,11 @@
     font-size: 20px;
     margin: 0 0 6px;
     max-width: 288px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .profile__description {
     margin: 0;
     max-width: 288px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .profile__column {
@@ -150,10 +140,6 @@
   }
 
   .profile__add-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     width: 100%;
     margin: 16px 0 0;
     box-sizing: border-box;

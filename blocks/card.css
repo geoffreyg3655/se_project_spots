@@ -23,10 +23,11 @@
   font-size: 20px;
   line-height: 24px;
   color: #212121;
+  max-width: 353px;
 }
 
 .card__like-btn {
-  background-image: url(../images/heart.svg);
+  background-image: url(../images/heart-darker.svg);
   width: 23px;
   height: 20px;
   border: none;
@@ -47,8 +48,6 @@
   }
 
   .card__title {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    max-width: 200px;
   }
 }
