@@ -46,7 +46,11 @@
               />
               <div class="card__content">
                 <h2 class="card__title">Val Thorens</h2>
-                <button type="button" class="card__like-btn"></button>
+                <button
+                  type="button"
+                  class="card__like-btn"
+                  aria-label="Like card"
+                ></button>
               </div>
             </li>
             <li class="card">
@@ -114,9 +118,18 @@
           <p class="footer__copy">&copy; 2025 Spots</p>
         </div>
       </footer>
-      <div class="modal" id="edit-profile-modal">
+      <div
+        class="modal"
+        id="edit-profile-modal"
+        role="dialog"
+        aria-modal="true"
+      >
         <div class="modal__container">
-          <button type="button" class="modal__close-btn"></button>
+          <button
+            type="button"
+            class="modal__close-btn"
+            aria-label="Close modal"
+          ></button>
           <h2 class="modal__title">Edit profile</h2>
           <form class="modal__form">
             <label for="profile-name-input" class="modal__label">
@@ -141,9 +154,13 @@
           </form>
         </div>
       </div>
-      <div class="modal" id="new-post-modal">
+      <div class="modal" id="new-post-modal" role="dialog" aria-modal="true">
         <div class="modal__container">
-          <button type="button" class="modal__close-btn"></button>
+          <button
+            type="button"
+            class="modal__close-btn"
+            aria-label="Close modal"
+          ></button>
           <h2 class="modal__title">New post</h2>
           <form class="modal__form">
             <label for="card-image-input" class="modal__label">
