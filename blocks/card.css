@@ -1,3 +1,10 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
 .card__image {
   height: 413px;
   width: 100%;
@@ -26,6 +33,22 @@
   max-width: 353px;
 }
 
+.card__delete-btn {
+  background-image: url(../images/delete.svg);
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.card__delete-btn:hover {
+  background-image: url(../images/delete-hover.svg);
+}
+
 .card__like-btn {
   background-image: url(../images/heart-darker.svg);
   width: 23px;
@@ -33,13 +56,23 @@
   border: none;
   background-color: transparent;
   color: #212121;
-  opacity: 40%;
+  opacity: 0.4;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
 .card__like-btn:hover {
   opacity: 1;
+}
+
+.card__like-btn_active {
+  background-image: url(../images/like-active.svg);
+  opacity: 1;
+}
+
+.card__like-btn_active:hover {
+  background-image: url(../images/like-active.svg);
+  opacity: 0.4;
 }
 
 @media screen and (max-width: 627px) {
