@@ -35,7 +35,6 @@
 .modal__close-btn {
   background-image: url(../images/close-btn-icon.svg);
   background-repeat: no-repeat;
-  background-position: center -45%;
   position: absolute;
   top: 32px;
   right: 50px;
@@ -159,7 +158,7 @@
 }
 
 @media screen and (max-width: 627px) {
-  .modal__container {
+  .modal__content {
     max-width: 300px;
     padding: 12px;
     border-radius: 8px;
