@@ -135,12 +135,10 @@ editProfileCloseBtn.addEventListener("click", function () {
 previewModalCloseBtn.addEventListener("click", () => closeModal(previewModal));
 
 newPostBtn.addEventListener("click", () => {
-  resetValidation(addCardFormElement, settings);
   openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", () => {
-  resetValidation(addCardFormElement, settings);
   closeModal(newPostModal);
 });
 
@@ -165,6 +163,7 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
+  addCardFormElement.reset();
   closeModal(newPostModal);
   resetValidation(addCardFormElement, settings);
 }

@@ -45,7 +45,7 @@
   background-color: transparent;
   cursor: pointer;
   color: #212121;
-  opacity: 40%;
+  opacity: 0.4;
   transition: opacity 0.2s ease;
   background-position: center;
 }
@@ -110,15 +110,19 @@
   color: #2121214d;
 }
 
-.modal_input_type_error {
+.modal__input_type_error {
   border: 1px solid rgba(255, 0, 0, 0.6);
 }
 
 .modal__error {
-  display: block;
+  display: none;
   color: #e44;
   margin-top: 8px;
   font-size: 12px;
+}
+
+.modal__error.modal__error_visible {
+  display: block;
 }
 
 .modal__submit-btn {
