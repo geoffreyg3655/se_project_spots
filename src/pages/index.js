@@ -45,13 +45,18 @@ const api = new Api({
   },
 });
 
+const profileAvatarEl = document.querySelector(".profile__avatar");
+
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([userData, cards]) => {
     cards.forEach(function (item) {
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
+    profileNameEl.textContent = userData.name;
+    profileDescriptionEl.textContent = userData.about;
+    profileAvatarEl.src = userData.avatar;
   })
   .catch(console.error);
 
@@ -170,10 +175,19 @@ newPostCloseBtn.addEventListener("click", () => {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
-  resetValidation(editProfileForm, validationConfig);
+  api
+    .editUserInfo({
+      name: editProfileNameInput.value,
+      about: editProfileDescriptionInput.value,
+    })
+    .then((data) => {
+      // TODO - Use data argument instead of the input values
+      profileNameEl.textContent = editProfileNameInput.value;
+      profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+      closeModal(editProfileModal);
+      resetValidation(editProfileForm, validationConfig);
+    })
+    .catch(console.error);
 }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
