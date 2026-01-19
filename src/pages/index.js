@@ -79,6 +79,13 @@ const addCardSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 const cardImageInput = newPostModal.querySelector("#card-image-input");
 const cardCaptionInput = newPostModal.querySelector("#card-caption-input");
 
+//Avatar form element
+const editAvatarBtn = document.querySelector(".profile__avatar-btn");
+const editAvatarModal = document.querySelector("#edit-avatar-modal");
+const editAvatarCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
+const editAvatarForm = editAvatarModal.querySelector(".modal__form");
+const avatarInput = editAvatarModal.querySelector("#profile-avatar-input");
+
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
@@ -144,13 +151,15 @@ function closeModal(modal) {
   }
 }
 
-[editProfileModal, newPostModal, previewModal].forEach((modal) => {
-  modal.addEventListener("mousedown", (evt) => {
-    if (evt.target === modal) {
-      closeModal(modal);
-    }
-  });
-});
+[editProfileModal, newPostModal, previewModal, editAvatarModal].forEach(
+  (modal) => {
+    modal.addEventListener("mousedown", (evt) => {
+      if (evt.target === modal) {
+        closeModal(modal);
+      }
+    });
+  }
+);
 
 editProfileBtn.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
@@ -181,7 +190,6 @@ function handleEditProfileSubmit(evt) {
       about: editProfileDescriptionInput.value,
     })
     .then((data) => {
-      // TODO - Use data argument instead of the input values
       profileNameEl.textContent = editProfileNameInput.value;
       profileDescriptionEl.textContent = editProfileDescriptionInput.value;
       closeModal(editProfileModal);
@@ -191,6 +199,21 @@ function handleEditProfileSubmit(evt) {
 }
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+
+// TODO - finish avatar submission handler
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+
+  api
+    .editAvatarInfo(avatarInput.value)
+    .then((data) => {
+      profileAvatarEl.src = data.avatar;
+      closeModal(editAvatarModal);
+      editAvatarForm.reset();
+      resetValidation(editAvatarForm, validationConfig);
+    })
+    .catch(console.error);
+}
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
@@ -207,6 +230,17 @@ function handleAddCardSubmit(evt) {
   closeModal(newPostModal);
   resetValidation(addCardFormElement, validationConfig);
 }
+
+editAvatarBtn.addEventListener("click", () => {
+  resetValidation(editAvatarForm, validationConfig);
+  openModal(editAvatarModal);
+});
+
+editAvatarCloseBtn.addEventListener("click", () => {
+  closeModal(editAvatarModal);
+});
+
+editAvatarForm.addEventListener("submit", handleAvatarSubmit);
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
