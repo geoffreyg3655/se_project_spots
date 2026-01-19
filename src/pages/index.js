@@ -86,6 +86,9 @@ const editAvatarCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
 const editAvatarForm = editAvatarModal.querySelector(".modal__form");
 const avatarInput = editAvatarModal.querySelector("#profile-avatar-input");
 
+//Delete form element
+const deleteModal = document.querySelector("#delete-modal");
+
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
@@ -123,9 +126,7 @@ function getCardElement(data) {
   });
 
   const deleteBtnEl = cardElement.querySelector(".card__delete-btn");
-  deleteBtnEl.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  deleteBtnEl.addEventListener("click", handleDeleteCard);
 
   cardImageEl.addEventListener("click", () => {
     previewCaptionEl.textContent = data.name;
@@ -149,6 +150,10 @@ function closeModal(modal) {
   if (!document.querySelector(".modal_is-opened")) {
     document.removeEventListener("keydown", handleEscClose);
   }
+}
+
+function handleDeleteCard(evt) {
+  openModal(deleteModal);
 }
 
 [editProfileModal, newPostModal, previewModal, editAvatarModal].forEach(
