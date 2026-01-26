@@ -28,7 +28,6 @@ class Api {
     });
   }
 
-  // TODO - Implement POST / cards (add a new card)
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",

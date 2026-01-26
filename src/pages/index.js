@@ -120,7 +120,6 @@ function handleLike(cardId, likeButton) {
   api
     .changeLikeStatus(cardId, isLiked)
     .then((card) => {
-      // API returns { isLiked: true/false, ... }
       likeButton.classList.toggle("card__like-btn_active", card.isLiked);
     })
     .catch(console.error);
@@ -147,7 +146,6 @@ function getCardElement(data) {
   cardLikeBtnEl.addEventListener("click", (evt) => {
     evt.preventDefault();
     evt.stopPropagation();
-    console.log("✅ like button clicked", data._id);
     handleLike(data._id, cardLikeBtnEl);
   });
 
@@ -244,7 +242,6 @@ function handleEditProfileSubmit(evt) {
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-// TODO - finish avatar submission handler
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
 
