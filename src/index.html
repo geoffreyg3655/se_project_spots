@@ -193,15 +193,16 @@
           class="modal__close-btn"
           aria-label="Close modal"
         ></button>
-        <h2 class="modal__title">Edit avatar</h2>
+        <h2 class="modal__title">Edit profile avatar</h2>
         <form class="modal__form" id="edit-avatar-form" novalidate>
           <label for="profile-avatar-input" class="modal__label">
-            Avatar
+            Profile Picture
             <input
               id="profile-avatar-input"
               class="modal__input"
               name="avatar"
-              placeholder="Avatar goes here"
+              type="url"
+              placeholder="Paste the link to an image"
               required
             />
             <span id="profile-avatar-input-error" class="modal__error"></span>
@@ -211,7 +212,6 @@
       </div>
     </div>
 
-    <!-- TODO - Style the modal -->
     <div class="modal" id="delete-modal" role="dialog" aria-modal="true">
       <div class="modal__content">
         <button
