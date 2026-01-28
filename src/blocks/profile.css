@@ -34,7 +34,6 @@
   gap: 6px;
   padding-bottom: 12px;
   visibility: hidden;
-  /* TODO - finish mobile avatar button styles */
 }
 
 .profile__avatar-container:hover .profile__avatar-btn {
@@ -110,7 +109,7 @@
   font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-size: 32px;
-  line-height: 1;
+  line-height: 1.2;
   color: #212121;
   display: -webkit-box;
   overflow: hidden;
@@ -207,6 +206,7 @@
 
 #delete-modal .modal__form {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -245,14 +245,6 @@
   cursor: pointer;
 }
 
-#delete-modal .modal__form {
-  display: flex;
-  flex-direction: row !important;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
 #delete-modal .modal__submit-btn:last-of-type:hover {
   background: #212121;
   color: #ffffff;
@@ -285,17 +277,39 @@
     padding-top: 20px;
   }
 
-  .profile__avatar-btn {
-    visibility: visible;
+  .profile__avatar-container {
+    width: 80px;
+    height: 80px;
   }
-
-  /* TODO - set content of ::after element to "" */
-  /* TODO - finish mobile avatar button styles */
 
   .profile__avatar {
     margin: 0 0 12px;
     height: 80px;
     width: 80px;
+  }
+
+  .profile__avatar-btn {
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+
+  .profile__avatar-btn::after {
+    content: "";
+    opacity: 0.6;
+  }
+
+  .profile__avatar-container:hover .profile__avatar-btn {
+    visibility: visible;
+  }
+
+  .profile__avatar-container:hover .profile__avatar-btn::after {
+    opacity: 0.6;
+  }
+
+  .profile__avatar-btn::after {
+    content: "";
   }
 
   .profile__name {
@@ -322,5 +336,14 @@
     width: 100%;
     margin: 16px 0 0;
     box-sizing: border-box;
+  }
+
+  #delete-modal .modal__form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #delete-modal .modal__submit-btn {
+    width: 100%;
   }
 }

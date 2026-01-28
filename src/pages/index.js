@@ -269,8 +269,6 @@ function handleEditProfileSubmit(evt) {
     });
 }
 
-// TODO - Implement loading text for all other form submissions
-
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleAvatarSubmit(evt) {
