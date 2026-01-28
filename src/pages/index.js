@@ -4,6 +4,7 @@ import {
   validationConfig,
   resetValidation,
 } from "../scripts/validation.js";
+import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
 // const initialCards = [
@@ -105,6 +106,12 @@ const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
+const deleteCloseBtn = deleteModal.querySelector(".modal__close-btn");
+const deleteCancelBtn = deleteModal.querySelector(".modal__cancel-btn");
+
+deleteCloseBtn.addEventListener("click", () => closeModal(deleteModal));
+deleteCancelBtn.addEventListener("click", () => closeModal(deleteModal));
+
 function handleEscClose(evt) {
   if (evt.key === "Escape") {
     const openedModal = document.querySelector(".modal_is-opened");
@@ -178,13 +185,22 @@ function closeModal(modal) {
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
+
+  const submitBtn = evt.submitter;
+  const defaultText = submitBtn.textContent;
+
+  setButtonText(submitBtn, true, defaultText, "Deleting...");
+
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, defaultText, "Deleting...");
+    });
 }
 
 function handleDeleteCard(cardElement, cardId) {
@@ -193,15 +209,19 @@ function handleDeleteCard(cardElement, cardId) {
   openModal(deleteModal);
 }
 
-[editProfileModal, newPostModal, previewModal, editAvatarModal].forEach(
-  (modal) => {
-    modal.addEventListener("mousedown", (evt) => {
-      if (evt.target === modal) {
-        closeModal(modal);
-      }
-    });
-  }
-);
+[
+  editProfileModal,
+  newPostModal,
+  previewModal,
+  editAvatarModal,
+  deleteModal,
+].forEach((modal) => {
+  modal.addEventListener("mousedown", (evt) => {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
+});
 
 editProfileBtn.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
@@ -226,55 +246,80 @@ newPostCloseBtn.addEventListener("click", () => {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
+
+  const submitBtn = evt.submitter;
+  const defaultText = submitBtn.textContent;
+
+  setButtonText(submitBtn, true, defaultText, "Saving...");
+
   api
     .editUserInfo({
       name: editProfileNameInput.value,
       about: editProfileDescriptionInput.value,
     })
     .then((data) => {
-      profileNameEl.textContent = editProfileNameInput.value;
-      profileDescriptionEl.textContent = editProfileDescriptionInput.value;
+      profileNameEl.textContent = data.name;
+      profileDescriptionEl.textContent = data.about;
       closeModal(editProfileModal);
       resetValidation(editProfileForm, validationConfig);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, defaultText, "Saving...");
+    });
 }
+
+// TODO - Implement loading text for all other form submissions
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
 
+  const submitBtn = evt.submitter;
+  const defaultText = submitBtn.textContent;
+
+  setButtonText(submitBtn, true, defaultText, "Saving...");
+
   api
     .editAvatarInfo(avatarInput.value)
-    .then((data) => {
-      profileAvatarEl.src = data.avatar;
+    .then((userData) => {
+      profileAvatarEl.src = userData.avatar;
       closeModal(editAvatarModal);
-      editAvatarForm.reset();
+      evt.target.reset();
       resetValidation(editAvatarForm, validationConfig);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, defaultText, "Saving...");
+    });
 }
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
 
-  const inputValues = {
-    name: cardCaptionInput.value,
-    link: cardImageInput.value,
-  };
+  const submitBtn = evt.submitter;
+  const defaultText = submitBtn.textContent;
+
+  setButtonText(submitBtn, true, defaultText, "Saving...");
 
   api
-    .addCard(inputValues)
-    .then((newCard) => {
-      const cardElement = getCardElement(newCard);
+    .addCard({
+      name: cardCaptionInput.value,
+      link: cardImageInput.value,
+    })
+    .then((cardData) => {
+      const cardElement = getCardElement(cardData);
       cardsList.prepend(cardElement);
 
-      addCardFormElement.reset();
+      evt.target.reset();
       closeModal(newPostModal);
       resetValidation(addCardFormElement, validationConfig);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitBtn, false, defaultText, "Saving...");
+    });
 }
 
 editAvatarBtn.addEventListener("click", () => {
