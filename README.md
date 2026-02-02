@@ -1,28 +1,57 @@
-# Project 3 - Spots
+# Project 3 – Spots
 
-Responsive image-sharing page built with HTML + CSS (BEM, Flexbox, Grid, media queries).
+A responsive photo-sharing web application where users can manage profiles and interact with image cards.  
+Built with modern frontend practices and connected to a backend API to persist user data.
 
-## Tech
+---
 
-- HTML5 semantic tags
-- CSS Grid/Flexbox
-- BEM, Normalize.css
+## 🛠 Tech Stack
+
+- HTML5 (semantic markup)
+- CSS3 (BEM, Flexbox, Grid, media queries)
+- JavaScript (ES6+)
+- Asynchronous JavaScript (Promises, Fetch API)
+- RESTful API integration
+- Modular architecture
+- Normalize.css
 - Custom fonts (Poppins) with fallbacks
 - GitHub Pages
-- Responsive
 
-## Features
+---
 
-- 3/2/1 card grid (desktop/tablet/mobile)
-- Clamped text (1-line & 3-line ellipsis)
-- Hover states
-- Min width 320px, 20px side padding
+## ✨ Features
 
-## Live
+- Responsive 3 / 2 / 1 card grid (desktop / tablet / mobile)
+- Edit user profile information
+- Update avatar image
+- Add new image cards
+- Like and unlike cards
+- Delete user-owned cards
+- Persistent data storage via backend API
+- Loading states and form validation
+- Minimum width 320px with 20px side padding
 
-- [GitHub Pages](https://geoffreyg3655.github.io/se_project_spots/)
-- [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
+---
 
-## Project Video
+## 🔗 Live Project
 
-You can watch my project walkthrough here: [Spots Project Video](https://drive.google.com/file/d/1bI5gGgsrKmGWdgXIaaQn4Tg0oDMV0Vl6/view?usp=sharing)
+- 🌍 **Live Site:** https://geoffreyg3655.github.io/se_project_spots/
+
+---
+
+## 🎥 Project Demo
+
+📺 **Watch the demo video:**  
+https://youtu.be/o7yPt9k8kO8
+
+This demo showcases the **Spots** project, a photo-sharing web application built using asynchronous JavaScript and REST API integration.
+
+The video demonstrates:
+
+- Fetching and rendering user data from an API
+- Editing profile information and updating the avatar
+- Adding, liking, and deleting cards
+- Handling loading states and server responses
+- Ensuring all changes persist after a page refresh
+
+📌 _This project was completed as part of Sprint 9 of the TripleTen Software Engineering program._
